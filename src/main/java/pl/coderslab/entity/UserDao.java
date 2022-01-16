@@ -27,7 +27,7 @@ public class UserDao {
     public User create(User user) {
         try (Connection conn = DBUtil.getConnection()) {
 
-            PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY,  Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY,  PreparedStatement.RETURN_GENERATED_KEYS);
             preStmt.setString(1,user.getUserName());
             preStmt.setString(2,user.getEmail());
             preStmt.setString(3,getPasswordHashed(user));

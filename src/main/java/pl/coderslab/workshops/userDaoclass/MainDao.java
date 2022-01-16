@@ -16,9 +16,9 @@ public class MainDao {
 //        Check if adding user and table works:
 //        UserDao userDao = new UserDao();
 //        User user = new User();
-//        user.setUserName("arek");
+//        user.setUserName("Darek");
 //        user.setEmail("arkadiusz.jozwiak@coderslab.pl");
-//        user.setPassword("pass");
+//        user.setPassword("passOPass");
 //        userDao.createTableUsers();
 //        userDao.create(user);
 
@@ -43,12 +43,13 @@ public class MainDao {
 //        UserDao userDao = new UserDao();
 //        userDao.delete(2);
 
-        UserDao userDao = new UserDao();
-        userDao.delete(3);
-        User[] arrCheck = userDao.findAll();
-        for (User u : arrCheck) {
-            System.out.printf("%d     |%s               |%s        |%s%n",u.getId(),u.getEmail(),u.getUserName(), u.getPassword());
-        }
+//        FIND ALL
+//        UserDao userDao = new UserDao();
+//        userDao.delete(3);
+//        User[] arrCheck = userDao.findAll();
+//        for (User u : arrCheck) {
+//            System.out.printf("%d     |%s               |%s        |%s%n",u.getId(),u.getEmail(),u.getUserName(), u.getPassword());
+//        }
 
 
     }
