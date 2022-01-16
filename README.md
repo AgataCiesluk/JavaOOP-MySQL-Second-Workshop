@@ -5,5 +5,5 @@ Creation of class UserDao (to connect Java class User (its objects) with DB (use
 UserDao class mainly consists of CRUD methods:
 - Create
 - Read
-- Update
+- Update (separate method for password update)
 - Delete.
