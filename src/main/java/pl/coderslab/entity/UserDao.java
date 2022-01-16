@@ -19,6 +19,7 @@ public class UserDao {
     private static final String SELECT_FROM_USERS_WHERE_ID = "SELECT * FROM users WHERE id = ?";
     private static final String UPDATE_USER_EMAIL_USERNAME = "UPDATE users SET email = ?, username = ? WHERE id = ?";
     private static final String UPDATE_PASSWORD = "UPDATE users SET password = ? WHERE id = ?";
+    private static final String DELETE_USER = "DELETE FROM users WHERE id = ?";
 
 
     public User create(User user) {
@@ -113,6 +114,26 @@ public class UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Can not update the password.",ex);
+        }
+    }
+
+    public void delete(int userId) {
+        try (Connection conn = DBUtil.connect("workshop2")) {
+            PreparedStatement preStmt = conn.prepareStatement(USERS_WHERE_ID);
+            preStmt.setInt(1, userId);
+            ResultSet rs = preStmt.executeQuery();
+            if (rs.isBeforeFirst()){
+                PreparedStatement preStmt2 = conn.prepareStatement(DELETE_USER);
+                preStmt2.setInt(1, userId);
+                preStmt2.executeUpdate();
+
+            } else {
+                throw  new DaoException("This user ID doesn't exist in DB");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("Can not delete this user.", ex);
         }
     }
 

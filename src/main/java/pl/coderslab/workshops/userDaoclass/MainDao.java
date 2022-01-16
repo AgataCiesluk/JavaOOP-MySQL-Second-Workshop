@@ -1,5 +1,6 @@
 package pl.coderslab.workshops.userDaoclass;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.entity.User;
 import pl.coderslab.entity.UserDao;
@@ -37,6 +38,10 @@ public class MainDao {
 //        userToUpdate.setPassword("aGaTkA");
 //        userDao.updatePassword(userToUpdate);
 
+
+//        DELETE
+//        UserDao userDao = new UserDao();
+//        userDao.delete(2);
 
     }
 }

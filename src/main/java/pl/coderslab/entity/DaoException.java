@@ -6,4 +6,7 @@ public class DaoException extends RuntimeException {
     public DaoException(String message, SQLException ex){
         super(message,ex);
     }
+    public DaoException (String message) {
+        super(message);
+    }
 }
