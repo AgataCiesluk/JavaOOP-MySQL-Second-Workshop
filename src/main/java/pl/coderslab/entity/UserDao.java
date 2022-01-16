@@ -17,6 +17,8 @@ public class UserDao {
             ");";
     private static final String USERS_WHERE_ID = "SELECT id FROM users WHERE id = ?";
     private static final String SELECT_FROM_USERS_WHERE_ID = "SELECT * FROM users WHERE id = ?";
+    private static final String UPDATE_USER_EMAIL_USERNAME = "UPDATE users SET email = ?, username = ? WHERE id = ?";
+    private static final String UPDATE_PASSWORD = "UPDATE users SET password = ? WHERE id = ?";
 
 
     public User create(User user) {
@@ -83,5 +85,36 @@ public class UserDao {
         }
 
     }
+
+    public void update(User user) {
+        try (Connection conn = DBUtil.connect("workshop2")) {
+            PreparedStatement preStmt = conn.prepareStatement(UPDATE_USER_EMAIL_USERNAME);
+            preStmt.setString(1, user.getEmail());
+            preStmt.setString(2, user.getUserName());
+            preStmt.setInt(3,user.getId());
+            preStmt.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("Can not update the user.",ex);
+        }
+
+    }
+
+    public void updatePassword(User user) {
+        try (Connection conn = DBUtil.connect("workshop2")) {
+            PreparedStatement preStmt = conn.prepareStatement(UPDATE_PASSWORD);
+            preStmt.setString(1, getPasswordHashed(user));
+            preStmt.setInt(2,user.getId());
+            preStmt.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("Can not update the password.",ex);
+        }
+    }
+
 
 }

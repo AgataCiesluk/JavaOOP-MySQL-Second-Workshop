@@ -28,6 +28,15 @@ public class MainDao {
 //        User user1 = userDao.read(1);
 //        System.out.printf("%d     |%s               |%s        |%s",user1.getId(),user1.getEmail(),user1.getUserName(), user1.getPassword());
 
+//        UPDATE
+//        UserDao userDao = new UserDao();
+//        User userToUpdate = userDao.read(1);
+//        userToUpdate.setUserName("Arkadiusz");
+//        userToUpdate.setEmail("arek@coderslab.pl");
+//        userDao.update(userToUpdate);
+//        userToUpdate.setPassword("aGaTkA");
+//        userDao.updatePassword(userToUpdate);
+
 
     }
 }
