@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.workshops.userDaoclass.DBUtil;
 
 import java.sql.*;
+import java.util.Arrays;
 
 public class UserDao {
     private static final String CREATE_USER_QUERY =
@@ -20,6 +21,7 @@ public class UserDao {
     private static final String UPDATE_USER_EMAIL_USERNAME = "UPDATE users SET email = ?, username = ? WHERE id = ?";
     private static final String UPDATE_PASSWORD = "UPDATE users SET password = ? WHERE id = ?";
     private static final String DELETE_USER = "DELETE FROM users WHERE id = ?";
+    private static final String SELECT_ALL = "SELECT * FROM users;";
 
 
     public User create(User user) {
@@ -136,6 +138,31 @@ public class UserDao {
             throw new DaoException("Can not delete this user.", ex);
         }
     }
+
+    private User[] addToArray(User u, User[] users) {
+        User[] tmpUsers = Arrays.copyOf(users, users.length + 1);
+        tmpUsers[users.length] = u;
+        return tmpUsers;
+    }
+
+    public User[] findAll() {
+        try (Connection conn = DBUtil.connect("workshop2")) {
+            User[] users = new User[0];
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(SELECT_ALL);
+            while (rs.next()) {
+                int userId = rs.getInt("id");
+                User u = read(userId);
+                users = addToArray(u,users);
+            }
+
+            return users;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("Can not find any object.", ex);
+        }
+    }
+
 
 
 }

@@ -43,5 +43,13 @@ public class MainDao {
 //        UserDao userDao = new UserDao();
 //        userDao.delete(2);
 
+        UserDao userDao = new UserDao();
+        userDao.delete(3);
+        User[] arrCheck = userDao.findAll();
+        for (User u : arrCheck) {
+            System.out.printf("%d     |%s               |%s        |%s%n",u.getId(),u.getEmail(),u.getUserName(), u.getPassword());
+        }
+
+
     }
 }
